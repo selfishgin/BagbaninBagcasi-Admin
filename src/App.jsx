@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SignInForm from './auth/SignInForm';
-
+import SignIn from './Pages/SignIn';
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<SignInForm />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route index path="/" element={<SignIn />} />
+        </Routes>
+      </Router>
+    </>
   );
 };
 
