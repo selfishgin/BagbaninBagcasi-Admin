@@ -1,25 +1,23 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SignIn from './Pages/SignIn';
-import ScrollToTop from './components/common/ScroollToTop';
-import AppLayout from './layout/AppLayout';
-import Home from './Pages/Home';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import SignIn from "./Pages/SignIn";
+import ScrollToTop from "./components/common/ScroollToTop";
+import AppLayout from "./layout/AppLayout";
+import Home from "./Pages/Home";
+import { SidebarProvider } from "./context/SidebarContext"; // ✅ SidebarProvider-i əlavə edirik!
+
 const App = () => {
   return (
-    <>
+    <SidebarProvider> {/* ✅ Bütün komponentlər kontekst daxilində işləyəcək */}
       <Router>
-        <ScrollToTop/>
+        <ScrollToTop />
         <Routes>
-
           <Route element={<AppLayout />}>
-            <Route index path='/' element={<Home/>}></Route>
+            <Route path="/" element={<Home />} />
           </Route>
-
           <Route index path="/signin" element={<SignIn />} />
-          
         </Routes>
-
       </Router>
-    </>
+    </SidebarProvider>
   );
 };
 

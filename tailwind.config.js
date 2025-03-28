@@ -149,6 +149,17 @@ module.exports = {
     },
   },
   plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.no-scrollbar': {
+          'scrollbar-width': 'none',
+          '-ms-overflow-style': 'none',
+        },
+        '.no-scrollbar::-webkit-scrollbar': {
+          display: 'none',
+        },
+      }, ['responsive', 'hover']);
+    },
     function ({ addComponents, addUtilities, theme }) {
       addComponents({
         '@layer base': {
