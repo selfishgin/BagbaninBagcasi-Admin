@@ -1,50 +1,38 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import BoxCubeIcon  from "../../public/icons/box-cube.svg";
-import  CalenderIcon  from "../../public/icons/calender-line.svg";
-import ChevronDownIcon  from "../../public/icons/chevron-down.svg";
-import GridIcon from "../../public/icons/grid.svg";
-import ListIcon from "../../public/icons/list.svg";
-import PageIcon from "../../public/icons/page.svg";
-import PieChartIcon from "../../public/icons/pie-chart.svg";
-import PlugInIcon from "../../public/icons/plug-in.svg";
-import TableIcon from "../../public/icons/table.svg";
-import UserCircleIcon from "../../public/icons/user-circle.svg";  
-
 import { useSidebar } from "../context/SidebarContext.jsx";
 import SidebarWidget from "./SidebarWidget";
 
 const navItems = [
   {
-    icon: <GridIcon />,
-    name: "Dashboard",  
+    icon: <img src="/icons/grid.svg" alt="Dashboard" className="w-5 h-5" />,
+    name: "Dashboard",
     path: "/",
-    // subItems: [{ name: "Ecommerce", path: "/", pro: false }],
   },
   {
-    icon: <CalenderIcon />,
+    icon: <img src="/icons/calender-line.svg" alt="Calendar" className="w-5 h-5" />,
     name: "Calendar",
     path: "/calendar",
   },
   {
-    icon: <UserCircleIcon />,
+    icon: <img src="/icons/user-circle.svg" alt="User" className="w-5 h-5" />,
     name: "User Profile",
     path: "/profile",
   },
   {
     name: "Forms",
-    icon: <ListIcon />,
+    icon: <img src="/icons/list.svg" alt="Forms" className="w-5 h-5" />,
     subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
   },
   {
     name: "Tables",
-    icon: <TableIcon />,
+    icon: <img src="/icons/table.svg" alt="Tables" className="w-5 h-5" />,
     subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
   },
   {
     name: "Pages",
-    icon: <PageIcon />,
+    icon: <img src="/icons/page.svg" alt="Pages" className="w-5 h-5" />,
     subItems: [
       { name: "Blank Page", path: "/blank", pro: false },
       { name: "404 Error", path: "/error-404", pro: false },
@@ -54,7 +42,7 @@ const navItems = [
 
 const othersItems = [
   {
-    icon: <PieChartIcon />,
+    icon: <img src="/icons/pie-chart.svg" alt="Charts" className="w-5 h-5" />,
     name: "Charts",
     subItems: [
       { name: "Line Chart", path: "/line-chart", pro: false },
@@ -62,7 +50,7 @@ const othersItems = [
     ],
   },
   {
-    icon: <BoxCubeIcon />,
+    icon: <img src="/icons/box-cube.svg" alt="UI Elements" className="w-5 h-5" />,
     name: "UI Elements",
     subItems: [
       { name: "Alerts", path: "/alerts", pro: false },
@@ -74,7 +62,7 @@ const othersItems = [
     ],
   },
   {
-    icon: <PlugInIcon />,
+    icon: <img src="/icons/plug-in.svg" alt="Auth" className="w-5 h-5" />,
     name: "Authentication",
     subItems: [
       { name: "Sign In", path: "/signin", pro: false },
@@ -104,10 +92,7 @@ const AppSidebar = () => {
         if (nav.subItems) {
           nav.subItems.forEach((subItem) => {
             if (isActive(subItem.path)) {
-              setOpenSubmenu({
-                type: menuType,
-                index,
-              });
+              setOpenSubmenu({ type: menuType, index });
               submenuMatched = true;
             }
           });
@@ -133,13 +118,9 @@ const AppSidebar = () => {
   }, [openSubmenu]);
 
   const handleSubmenuToggle = (index, menuType) => {
-    setOpenSubmenu((prevOpenSubmenu) => {
-      if (prevOpenSubmenu && prevOpenSubmenu.type === menuType && prevOpenSubmenu.index === index) {
-        return null;
-
-      }
-      return { type: menuType, index };
-    });
+    setOpenSubmenu((prev) =>
+      prev?.type === menuType && prev?.index === index ? null : { type: menuType, index }
+    );
   };
 
   const renderMenuItems = (items, menuType) => (
@@ -149,16 +130,22 @@ const AppSidebar = () => {
           {nav.subItems ? (
             <button
               onClick={() => handleSubmenuToggle(index, menuType)}
-              className={`menu-item group ${openSubmenu?.type === menuType && openSubmenu?.index === index ? "menu-item-active" : "menu-item-inactive"} cursor-pointer ${!isExpanded && !isHovered ? "lg:justify-center" : "lg:justify-start"}`}
+              className={`menu-item group ${openSubmenu?.type === menuType && openSubmenu?.index === index
+                ? "menu-item-active"
+                : "menu-item-inactive"
+              } cursor-pointer ${!isExpanded && !isHovered ? "lg:justify-center" : "lg:justify-start"}`}
             >
-              <span
-                className={`menu-item-icon-size ${openSubmenu?.type === menuType && openSubmenu?.index === index ? "menu-item-icon-active" : "menu-item-icon-inactive"}`}
-              >
+              <span className={`menu-item-icon-size ${openSubmenu?.type === menuType && openSubmenu?.index === index
+                ? "menu-item-icon-active"
+                : "menu-item-icon-inactive"
+              }`}>
                 {nav.icon}
               </span>
               {(isExpanded || isHovered || isMobileOpen) && <span className="menu-item-text">{nav.name}</span>}
               {(isExpanded || isHovered || isMobileOpen) && (
-                <ChevronDownIcon
+                <img
+                  src="/icons/chevron-down.svg"
+                  alt="toggle"
                   className={`ml-auto w-5 h-5 transition-transform duration-200 ${openSubmenu?.type === menuType && openSubmenu?.index === index ? "rotate-180 text-brand-500" : ""}`}
                 />
               )}
@@ -221,9 +208,7 @@ const AppSidebar = () => {
 
   return (
     <aside
-      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 ${
-        isExpanded || isMobileOpen ? "w-[290px]" : isHovered ? "w-[290px]" : "w-[90px]"
-      } ${isMobileOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
+      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 ${isExpanded || isMobileOpen ? "w-[290px]" : isHovered ? "w-[290px]" : "w-[90px]"} ${isMobileOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
       onMouseEnter={() => !isExpanded && setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
