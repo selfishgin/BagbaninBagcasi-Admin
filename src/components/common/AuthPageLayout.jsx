@@ -1,7 +1,7 @@
 import React from "react";
-import GridShape from "./components/common/GridShape";
+import GridShape from "../common/GridShape";
 import { Link } from "react-router-dom"; 
-import ThemeTogglerTwo from "./components/common/ThemeTogglerTwo";
+import ThemeTogglerTwo from "../common/ThemeTogglerTwo";
 
 const AuthLayout = ({ children }) => {
   return (
@@ -21,7 +21,7 @@ const AuthLayout = ({ children }) => {
                 />
               </Link>
               <p className="text-center text-gray-400 dark:text-white/60">
-                Free and Open-Source Tailwind CSS Admin Dashboard Template
+                Admin Panel
               </p>
             </div>
           </div>
