@@ -17,12 +17,12 @@ const navItems = [
     {
         icon: <img src="/icons/seller2.svg" alt="Seller" className="w-5 h-5" />,
         name: "Sellers",
-        path: "/profile",
+        path: "/sellers",  // Seller ve User Profile eyni path'de idi. Duzeldildi
     },
     {
       icon: <img src="/icons/user-circle.svg" alt="User" className="w-5 h-5" />,
       name: "User Profile",
-      path: "/profile",
+      path: "/profile",    // Seller ve User Profile eyni path'de idi. Duzeldildi
     },
     {
       name: "Forms",

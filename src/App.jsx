@@ -4,7 +4,9 @@ import ScrollToTop from "./components/common/ScroollToTop";
 import AppLayout from "./layout/AppLayout";
 import Home from "./Pages/Home";
 import { SidebarProvider } from "./context/SidebarContext"; // ✅ SidebarProvider-i əlavə edirik!
-import Calendar from "./layout/Calendar";
+import Calendar from "./Pages/Calendar";
+import UserProfiles from "./Pages/UserProfiles";
+import Sellers from "./Pages/Sellers";
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
           <Route element={<AppLayout />}>
             <Route path="/" element={<Home />} />
             <Route index path="/calendar" element={<Calendar />} />
+            <Route index path="/sellers" element={<Sellers />} />
+            <Route index path="/profile" element={<UserProfiles />} />
           </Route>
           <Route index path="/signin" element={<SignIn />} />
         </Routes>
