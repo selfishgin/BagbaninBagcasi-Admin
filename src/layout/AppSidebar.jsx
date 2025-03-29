@@ -15,7 +15,7 @@ const navItems = [
       path: "/calendar",
     },
     {
-        icon: <img src="/icons/seller3.svg" alt="Seller" className="w-5 h-5" />,
+        icon: <img src="/icons/seller2.svg" alt="Seller" className="w-5 h-5" />,
         name: "Sellers",
         path: "/profile",
     },
