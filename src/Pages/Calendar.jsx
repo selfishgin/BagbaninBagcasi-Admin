@@ -7,7 +7,6 @@ import { useModal } from "../hooks/useModal";
 import PageMeta from "../components/common/PageMeta";
 import { Modal } from "../components/ui/Modal";
 
-
 const Calendar = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [eventTitle, setEventTitle] = useState("");
@@ -68,8 +67,8 @@ const Calendar = () => {
 
   const handleAddOrUpdateEvent = () => {
     if (selectedEvent) {
-      setEvents((prevEvents) =>
-        prevEvents.map((event) =>
+      setEvents((prev) =>
+        prev.map((event) =>
           event.id === selectedEvent.id
             ? {
                 ...event,
@@ -90,8 +89,9 @@ const Calendar = () => {
         allDay: true,
         extendedProps: { calendar: eventLevel },
       };
-      setEvents((prevEvents) => [...prevEvents, newEvent]);
+      setEvents((prev) => [...prev, newEvent]);
     }
+
     closeModal();
     resetModalFields();
   };
@@ -107,33 +107,32 @@ const Calendar = () => {
   return (
     <>
       <PageMeta
-        title="React.js Calendar Dashboard | TailAdmin"
+        title="Calendar | Admin Panel"
         description="React.js Calendar Dashboard with Tailwind CSS"
       />
-      <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
-        <div className="custom-calendar">
-          <FullCalendar
-            ref={calendarRef}
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            headerToolbar={{
-              left: "prev,next addEventButton",
-              center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay",
-            }}
-            events={events}
-            selectable={true}
-            select={handleDateSelect}
-            eventClick={handleEventClick}
-            eventContent={renderEventContent}
-            customButtons={{
-              addEventButton: {
-                text: "Add Event +",
-                click: openModal,
-              },
-            }}
-          />
-        </div>
+
+      <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900 dark:text-white">
+        <FullCalendar
+          ref={calendarRef}
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          initialView="dayGridMonth"
+          headerToolbar={{
+            left: "prev,next addEventButton",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay",
+          }}
+          events={events}
+          selectable={true}
+          select={handleDateSelect}
+          eventClick={handleEventClick}
+          eventContent={renderEventContent}
+          customButtons={{
+            addEventButton: {
+              text: "Add Event +",
+              click: openModal,
+            },
+          }}
+        />
 
         <Modal
           isOpen={isOpen}
@@ -142,16 +141,15 @@ const Calendar = () => {
         >
           <div className="flex flex-col px-2 overflow-y-auto custom-scrollbar">
             <div>
-              <h5 className="mb-2 font-semibold text-gray-800 dark:text-white/90 text-xl lg:text-2xl">
+              <h5 className="mb-2 text-xl font-semibold text-gray-800 dark:text-white/90">
                 {selectedEvent ? "Edit Event" : "Add Event"}
               </h5>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Plan your next big moment: schedule or edit an event to stay on
-                track
+                Plan and manage your events.
               </p>
             </div>
 
-            <div className="mt-8 space-y-6">
+            <div className="mt-6 space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1.5">
                   Event Title
@@ -169,7 +167,7 @@ const Calendar = () => {
                   Event Color
                 </label>
                 <div className="flex flex-wrap gap-4">
-                  {Object.entries(calendarsEvents).map(([key]) => (
+                  {Object.keys(calendarsEvents).map((key) => (
                     <label
                       key={key}
                       className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-400"
@@ -235,15 +233,19 @@ const Calendar = () => {
   );
 };
 
+// ⬇️ Custom rendering of event items (with dark theme support)
 const renderEventContent = (eventInfo) => {
-  const colorClass = `fc-bg-${eventInfo.event.extendedProps.calendar.toLowerCase()}`;
+  const level = eventInfo.event.extendedProps.calendar?.toLowerCase();
+  const colorClass = {
+    danger: "bg-red-600 text-white",
+    success: "bg-green-600 text-white",
+    primary: "bg-blue-600 text-white",
+    warning: "bg-yellow-500 text-black",
+  }[level] || "bg-gray-500 text-white";
+
   return (
-    <div
-      className={`event-fc-color flex fc-event-main ${colorClass} p-1 rounded-sm`}
-    >
-      <div className="fc-daygrid-event-dot"></div>
-      <div className="fc-event-time">{eventInfo.timeText}</div>
-      <div className="fc-event-title">{eventInfo.event.title}</div>
+    <div className={`px-2 py-1 rounded-md text-xs ${colorClass}`}>
+      {eventInfo.event.title}
     </div>
   );
 };
