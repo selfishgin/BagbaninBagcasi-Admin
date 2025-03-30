@@ -213,7 +213,7 @@ module.exports = {
           '@apply text-brand-500 dark:text-brand-400': '',
         },
         '.menu-item-icon-inactive': {
-          '@apply text-gray-500 group-hover:text-gray-700 dark:text-gray-400 dark:group-hover:text-gray-300': '',
+          '@apply filter grayscale brightness-100 group-hover:filter grayscale brightness-100 dark:grayscale brightness-75 dark:group-hover:grayscale brightness-75': '',
         },
         '.menu-item-arrow': {
           '@apply relative': '',

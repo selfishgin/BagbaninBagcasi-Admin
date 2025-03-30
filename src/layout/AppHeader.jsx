@@ -1,17 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { useSidebar } from "../context/SidebarContext";
-import {ThemeTogglerButton}  from "../components/common/ThemeTogglerButton";
+import ThemeToggleButton  from "../components/common/ThemeTogglerButton.jsx";
 import NotificationDropdown from "../components/header/NotificationDropdown";
 import UserDropdown from "../components/header/UserDropdown";
 
-
-
-
-
 const AppHeader = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
-
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
 
   const handleToggle = () => {
@@ -161,7 +156,7 @@ const AppHeader = () => {
         >
           <div className="flex items-center gap-2 2xsm:gap-3">
             {/* <!-- Dark Mode Toggler --> */}
-            <ThemeTogglerButton /> 
+            <ThemeToggleButton /> 
             {/* <!-- Dark Mode Toggler --> */}
             <NotificationDropdown />
             {/* <!-- Notification Menu Area --> */}
@@ -172,6 +167,6 @@ const AppHeader = () => {
       </div>
     </header>
   );
-}
+};
 
 export default AppHeader;

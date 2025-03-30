@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router";
-import ChevronLeftIcon from "../../public/icons/chevron-left.svg";
-import EyeIcon from "../../public/icons/eye.svg";
-import EyeCloseIcon from "../../public/icons/eye-close.svg";
+import ChevronLeftIcon from "../icons/chevron-left.svg";
+import EyeIcon from "../icons/eye.svg";
+import EyeCloseIcon from "../icons/eye-close.svg";
 import Label from "../components/form/Label";
 import Input from "../components/form/input/InputField";
 import Checkbox from "../components/form/input/CheckBox";

@@ -1,78 +1,89 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-
 import { useSidebar } from "../context/SidebarContext.jsx";
 
+import GridIcon from "../icons/grid.svg?react";
+import CalendarIcon from "../icons/calender-line.svg?react";
+import SellerIcon from "../icons/seller.svg?react";
+import UserProfileIcon from "../icons/user-circle.svg?react";
+import ListIcon from "../icons/list.svg?react";
+import TableIcon from "../icons/table.svg?react";
+import PageIcon from "../icons/page.svg?react";
+import PieChartIcon from "../icons/pie-chart.svg?react";
+import PlugInIcon from "../icons/plug-in.svg?react";
+import Horizontal from "../icons/horizontal-dots.svg?react";
+import Chevron from "../icons/chevron-down.svg?react";
+
 const navItems = [
-    {
-      icon: <img src="/icons/grid.svg" alt="Dashboard" className="w-5 h-5" />,
-      name: "Dashboard",
-      path: "/",
-    },
-    {
-      icon: <img src="/icons/calender-line.svg" alt="Calendar" className="w-5 h-5" />,
-      name: "Calendar",
-      path: "/calendar",
-    },
-    {
-        icon: <img src="/icons/seller2.svg" alt="Seller" className="w-5 h-5" />,
-        name: "Sellers",
-        path: "/sellers",  // Seller ve User Profile eyni path'de idi. Duzeldildi
-    },
-    {
-      icon: <img src="/icons/user-circle.svg" alt="User" className="w-5 h-5" />,
-      name: "User Profile",
-      path: "/profile",    // Seller ve User Profile eyni path'de idi. Duzeldildi
-    },
-    {
-      name: "Forms",
-      icon: <img src="/icons/list.svg" alt="Forms" className="w-5 h-5" />,
-      subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
-    },
-    {
-      name: "Tables",
-      icon: <img src="/icons/table.svg" alt="Tables" className="w-5 h-5" />,
-      subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-    },
-    {
-      name: "Pages",
-      icon: <img src="/icons/page.svg" alt="Pages" className="w-5 h-5" />,
-      subItems: [
-        { name: "Blank Page", path: "/blank", pro: false },
-        { name: "404 Error", path: "/error-404", pro: false },
-      ],
-    },
-  ];
-  
-  const othersItems = [
-    {
-      icon: <img src="/icons/pie-chart.svg" alt="Charts" className="w-5 h-5" />,
-      name: "Charts",
-      subItems: [
-        { name: "Line Chart", path: "/line-chart", pro: false },
-        { name: "Bar Chart", path: "/bar-chart", pro: false },
-      ],
-    },
-    {
-      icon: <img src="/icons/box-cube.svg" alt="UI Elements" className="w-5 h-5" />,
-      name: "UI Elements",
-      subItems: [
-        { name: "Alerts", path: "/alerts", pro: false },
-        { name: "Avatar", path: "/avatars", pro: false },
-        { name: "Badge", path: "/badge", pro: false },
-        { name: "Buttons", path: "/buttons", pro: false },
-        { name: "Images", path: "/images", pro: false },
-        { name: "Videos", path: "/videos", pro: false },
-      ],
-    },
-    {
-      icon: <img src="/icons/plug-in.svg" alt="Auth" className="w-5 h-5" />,
-      name: "Authentication",
-      subItems: [
-        { name: "Sign In", path: "/signin", pro: false },
-        { name: "Sign Up", path: "/signup", pro: false },
-      ],
-    },
+  {
+    icon: <GridIcon className="w-5 h-5" />,
+    name: "Dashboard",
+    path: "/",
+  },
+  {
+    icon: <CalendarIcon className="w-5 h-5" />,
+    name: "Calendar",
+    path: "/calendar",
+  },
+  {
+    icon: <SellerIcon className="w-5 h-5" />,
+    name: "Sellers",
+    path: "/sellers",
+  },
+  {
+    icon: <UserProfileIcon className="w-5 h-5" />,
+    name: "User Profile",
+    path: "/profile",
+  },
+  {
+    name: "Forms",
+    icon: <ListIcon className="w-5 h-5" />,
+    subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+  },
+  {
+    name: "Tables",
+    icon: <TableIcon className="w-5 h-5" />,
+    subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
+  },
+  {
+    name: "Pages",
+    icon: <PageIcon className="w-5 h-5" />,
+    subItems: [
+      { name: "Blank Page", path: "/blank", pro: false },
+      { name: "404 Error", path: "/error-404", pro: false },
+    ],
+  },
+];
+
+const othersItems = [
+  {
+    icon: <PieChartIcon className="w-5 h-5" />,
+    name: "Charts",
+    subItems: [
+      { name: "Line Chart", path: "/line-chart", pro: false },
+      { name: "Bar Chart", path: "/bar-chart", pro: false },
+    ],
+  },
+  {
+    icon: <PieChartIcon className="w-5 h-5" />,
+    name: "UI Elements",
+    subItems: [
+      { name: "Alerts", path: "/alerts", pro: false },
+      { name: "Avatar", path: "/avatars", pro: false },
+      { name: "Badge", path: "/badge", pro: false },
+      { name: "Buttons", path: "/buttons", pro: false },
+      { name: "Images", path: "/images", pro: false },
+      { name: "Videos", path: "/videos", pro: false },
+    ],
+  },
+  {
+    icon: <PlugInIcon className="w-5 h-5" />,
+    name: "Authentication",
+    subItems: [
+      { name: "Sign In", path: "/signin", pro: false },
+      { name: "Sign Up", path: "/signup", pro: false },
+    ],
+  },
 ];
 
 const AppSidebar = () => {
@@ -147,10 +158,7 @@ const AppSidebar = () => {
                 </span>
                 {(isExpanded || isHovered || isMobileOpen) && <span className="menu-item-text">{nav.name}</span>}
                 {(isExpanded || isHovered || isMobileOpen) && (
-                  <img
-                    src="/icons/chevron-down.svg"
-                    alt="toggle"
-                    className={`ml-auto w-5 h-5 transition-transform duration-200 ${openSubmenu?.type === menuType && openSubmenu?.index === index ? "rotate-180 text-brand-500" : ""}`}
+                  <Chevron className={`ml-auto w-5 h-5 transition-transform duration-200 ${openSubmenu?.type === menuType && openSubmenu?.index === index ? "rotate-180 text-brand-500" : ""}`}
                   />
                 )}
               </button>
@@ -272,7 +280,7 @@ const AppSidebar = () => {
                   {isExpanded || isHovered || isMobileOpen ? (
                     "Menu"
                   ) : (
-                    <HorizontaLDots className="size-6" />
+                    <Horizontal className="size 6" />
                   )}
                 </h2>
                 {renderMenuItems(navItems, "main")}
@@ -288,7 +296,7 @@ const AppSidebar = () => {
                   {isExpanded || isHovered || isMobileOpen ? (
                     "Others"
                   ) : (
-                    <HorizontaLDots />
+                    <Horizontal />
                   )}
                 </h2>
                 {renderMenuItems(othersItems, "others")}

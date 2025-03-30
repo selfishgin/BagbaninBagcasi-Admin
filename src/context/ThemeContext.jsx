@@ -1,7 +1,3 @@
-
-
-// ThemeContext.jsx
-
 "use client";
 import React, { createContext, useState, useContext, useEffect } from "react";
 
@@ -12,9 +8,8 @@ export const ThemeProvider = ({ children }) => {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // This code will only run on the client side
     const savedTheme = localStorage.getItem("theme");
-    const initialTheme = savedTheme || "light"; // Default to light theme
+    const initialTheme = savedTheme || "light"; 
 
     setTheme(initialTheme);
     setIsInitialized(true);
@@ -49,3 +44,5 @@ export const useTheme = () => {
   }
   return context;
 };
+
+export default ThemeContext;
