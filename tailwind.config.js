@@ -1,7 +1,7 @@
 module.exports = {
   content: [
     "./index.html", 
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{html ,js,ts,jsx,tsx}",
   ],
   darkMode: 'class',
   theme: {
@@ -16,7 +16,7 @@ module.exports = {
         'title-md': '36px',
         'title-sm': '30px',
         'theme-xl': '20px',
-        'theme-sm': '14px',
+        'theme-sm': '16px',
         'theme-xs': '12px',
       },
       lineHeight: {

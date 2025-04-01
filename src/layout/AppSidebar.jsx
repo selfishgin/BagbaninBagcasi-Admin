@@ -5,10 +5,10 @@ import { useSidebar } from "../context/SidebarContext.jsx";
 import GridIcon from "../icons/grid.svg?react";
 import CalendarIcon from "../icons/calender-line.svg?react";
 import SellerIcon from "../icons/seller.svg?react";
+import CustomerIcon from "../icons/customer.svg?react";
+import CategoryIcon from '../icons/category.svg?react'
+import ProductIcon from '../icons/flower-products.svg?react'
 import UserProfileIcon from "../icons/user-circle.svg?react";
-import ListIcon from "../icons/list.svg?react";
-import TableIcon from "../icons/table.svg?react";
-import PageIcon from "../icons/page.svg?react";
 import PieChartIcon from "../icons/pie-chart.svg?react";
 import PlugInIcon from "../icons/plug-in.svg?react";
 import Horizontal from "../icons/horizontal-dots.svg?react";
@@ -21,9 +21,9 @@ const navItems = [
     path: "/",
   },
   {
-    icon: <CalendarIcon className="w-5 h-5" />,
-    name: "Calendar",
-    path: "/calendar",
+    icon: <CustomerIcon className="w-5 h-5" />,
+    name: "Customers",
+    path: "/customers",
   },
   {
     icon: <SellerIcon className="w-5 h-5" />,
@@ -31,31 +31,28 @@ const navItems = [
     path: "/sellers",
   },
   {
-    icon: <UserProfileIcon className="w-5 h-5" />,
-    name: "User Profile",
-    path: "/profile",
+    icon: <CategoryIcon className="w-5 h-5" />,
+    name: "Categories",
+    path: "/categories",
   },
   {
-    name: "Forms",
-    icon: <ListIcon className="w-5 h-5" />,
-    subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
-  },
-  {
-    name: "Tables",
-    icon: <TableIcon className="w-5 h-5" />,
-    subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-  },
-  {
-    name: "Pages",
-    icon: <PageIcon className="w-5 h-5" />,
-    subItems: [
-      { name: "Blank Page", path: "/blank", pro: false },
-      { name: "404 Error", path: "/error-404", pro: false },
-    ],
+    icon: <ProductIcon className="w-5 h-5" />,
+    name: "Products",
+    path: "/products",
   },
 ];
 
 const othersItems = [
+  {
+    icon: <CalendarIcon className="w-5 h-5" />,
+    name: "Calendar",
+    path: "/calendar",
+  },
+  {
+    icon: <UserProfileIcon className="w-5 h-5" />,
+    name: "User Profile",
+    path: "/profile",
+  },
   {
     icon: <PieChartIcon className="w-5 h-5" />,
     name: "Charts",
@@ -243,14 +240,14 @@ const AppSidebar = () => {
               <>
                 <img
                   className="dark:hidden"
-                  src="public\images\logo.svg"
+                  src="/images/logo.png"
                   alt="Logo"
                   width={150}
-                  height={40}
+                  height={20}
                 />
                 <img
                   className="hidden dark:block"
-                  src="public\images\logo-dark.svg"
+                  src="/images/logo.png"
                   alt="Logo"
                   width={150}
                   height={40}
@@ -258,7 +255,7 @@ const AppSidebar = () => {
               </>
             ) : (
               <img
-                src="public\images\logo-icon.svg"
+                src="/images/logo-hidden.png"
                 alt="Logo"
                 width={32}
                 height={32}

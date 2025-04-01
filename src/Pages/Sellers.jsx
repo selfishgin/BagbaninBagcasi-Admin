@@ -43,7 +43,7 @@ const Sellers = () => {
   const [selectedSeller, setSelectedSeller] = useState(null);
 
   const handleEdit = (seller) => {
-    setSelectedSeller(seller);
+      (seller);
     openModal();
   };
 

@@ -7,6 +7,7 @@ import { SidebarProvider } from "./context/SidebarContext";
 import Calendar from "./Pages/Calendar";
 import UserProfiles from "./Pages/UserProfiles";
 import Sellers from "./Pages/Sellers";
+import Customers from "./Pages/Customers";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route element={<AppLayout />}>
             <Route path="/" element={<Home />} />
             <Route index path="/calendar" element={<Calendar />} />
+            <Route index path="/customers" element={<Customers />} />
             <Route index path="/sellers" element={<Sellers />} />
             <Route index path="/profile" element={<UserProfiles />} />
           </Route>

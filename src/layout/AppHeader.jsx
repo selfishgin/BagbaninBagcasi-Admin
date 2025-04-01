@@ -78,21 +78,23 @@ const AppHeader = () => {
                 />
               </svg>
             )}
-            {/* Cross Icon */}
           </button>
 
-          <Link to="/" className="lg:hidden">
+          {/* <Link to="/" className="lg:hidden">
             <img
-              className="dark:hidden"
-              src="./images/logo/logo.svg"
+              className="w-[40px] dark:hidden"
+              src="/images/logo.png"
               alt="Logo"
             />
             <img
-              className="hidden dark:block"
-              src="./images/logo/logo-dark.svg"
+              className="hidden dark:block w-8"
+              src="/images/logo.png"
               alt="Logo"
             />
-          </Link>
+          </Link> */}
+
+
+          <p className="lg:hidden text-[20px] dark:text-white">Admin Panel</p>
 
           <button
             onClick={toggleApplicationMenu}
