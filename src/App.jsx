@@ -8,6 +8,7 @@ import Calendar from "./Pages/Calendar";
 import UserProfiles from "./Pages/UserProfiles";
 import Sellers from "./Pages/Sellers";
 import Customers from "./Pages/Customers";
+import Products from "./Pages/Products"
 
 const App = () => {
   return (
@@ -22,6 +23,8 @@ const App = () => {
             <Route index path="/customers" element={<Customers />} />
             <Route index path="/sellers" element={<Sellers />} />
             <Route index path="/profile" element={<UserProfiles />} />
+            <Route index path="/products" element={<Products/>} />
+
           </Route>
 
           <Route index path="/signin" element={<SignIn />} />
