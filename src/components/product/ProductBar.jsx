@@ -2,10 +2,9 @@ import { useEffect, useRef } from "react";
 import BoxIcon from "../../icons/add.svg?react";
 import { useModal } from "../../hooks/useModal";
 import Button from "../ui/button/Button";
-import AddCustomerModal from "./AddCustomerModel";
-import SeeAllCustomer from "./SeeAllCustomer";
+import AddProductModal from "./AddProductModal";
 
-const CustomerBar = ({ onSearch, onFilterChange }) => {
+const ProductBar = ({ onSearch, onFilterChange }) => {
   
     const inputRef = useRef(null);
     const { isOpen, openModal, closeModal } = useModal();
@@ -28,7 +27,7 @@ const CustomerBar = ({ onSearch, onFilterChange }) => {
         onFilterChange?.(e.target.value);
     };
 
-    const handleAddCustomer = () => {
+    const handleAddProduct = () => {
         openModal()
     };
 
@@ -98,20 +97,20 @@ const CustomerBar = ({ onSearch, onFilterChange }) => {
         </select>
     </div>
 
-      <Button onClick={handleAddCustomer}
+      <Button onClick={handleAddProduct}
         size="sm"
         variant="primary"
         className="w-full xl:w-auto text-lg bg-[#7da063] hover:bg-[#698754]  text-white hover:text-white dark:bg-[#7da063] dark:hover:bg-[#698754] dark:border-gray-800 dark:text-white border border-gray-200"
       >
         <BoxIcon />
-        Add Customer
+        Add Product
       </Button>
     </div>
-    <AddCustomerModal isOpen={isOpen} onClose={closeModal} onChange={handleChange} onFileChange={handleFileChange}/>
+    <AddProductModal isOpen={isOpen} onClose={closeModal} onChange={handleChange} onFileChange={handleFileChange}/>
     </>
             
 
   );
 };
 
-export default CustomerBar;
+export default ProductBar;
